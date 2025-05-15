@@ -55,7 +55,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1;
         }
         
@@ -327,11 +327,12 @@
         
         /* Features */
         .features {
+            background-color: transparent;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
+            gap: 20px;
+            margin-top: 30px;
         }
         
         .feature-card {
@@ -339,7 +340,7 @@
             max-width: 350px;
             background-color: white;
             border-radius: 10px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             text-align: center;
@@ -355,6 +356,7 @@
             color: var(--primary);
             margin-bottom: 20px;
         }
+
         
         /* Gallery */
         .gallery {
@@ -516,13 +518,6 @@
             transform: scale(1.2);
         }
         
-        /* CTA */
-        .cta {
-            background-image: url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            text-align: center;
-            color: white;
-        }
-        
         .cta h2 {
             color: white;
             margin-bottom: 30px;
@@ -604,7 +599,7 @@
         .review-stats {
             display: flex;
             justify-content: space-between;
-            margin-top: 40px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
         
@@ -613,7 +608,7 @@
             min-width: 200px;
             text-align: center;
             padding: 20px;
-            margin: 10px;
+            margin: 20px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -742,6 +737,7 @@
         }
         
         .product-card {
+            font-size: 1.2rem;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             overflow: hidden;
@@ -780,6 +776,114 @@
         z-index: 2;
         }
 
+        /* parallax section*/
+        .parallax-section {           
+             
+            height: 100vh; 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll; /* по умолчанию scroll, заменяет fixed на мобильных */
+            position: relative;
+            padding: 2rem 2rem;
+            z-index: 0;
+        }
+
+        .parallax-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.85); /* Светлый фильтр */
+            z-index: 0;
+        }
+
+        .dark_parallax-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Светлый фильтр */
+            z-index: 0;
+        }
+
+        
+        
+
+        .parallax-section > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Для десктопов можно вернуть эффект параллакса */
+        @media (min-width: 1024px) {
+            .parallax-section {
+                background-attachment: fixed;
+            }
+        }
+
+        /* Hero Section */
+        .dark_parallax-section {
+            /* гарантируем полную высоту экрана */
+            height: 100vh;
+            /* фон */
+            background-image: url('images/bg1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* фиксировать фон только на десктопе, иначе scroll */
+            background-attachment: scroll;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (min-width: 1024px) {
+            .dark_parallax-section {
+                background-attachment: fixed;
+            }
+        }
+
+        /* Тёмный полупрозрачный слой */
+        .dark_parallax-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        /* Центровка и вывод поверх оверлея */
+        .dark_parallax-section .parallax-inner {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            color: #fff;
+        }
+
+        /* Подзаголовок и кнопки можно чуть доработать */
+        .dark_parallax-section .subtitle {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .dark_parallax-section .btn-container {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+
     </style>
 </head>
 
@@ -793,14 +897,14 @@
                 <li><a href="#products">Продукция</a></li>
                 <li><a href="#services">Услуги</a></li>
                 <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#gallery">Галерея</a></li>
+                <!--<li><a href="#gallery">Галерея</a></li>-->
                 <li><a href="#contact">Контакты</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="parallax hero">
+    <section class="dark_parallax-section" style="background-image: url('images/bg1.jpg');">
         <div class="parallax-inner">
             <h1>Агро-Мастер Ставрополье</h1>
             <p class="subtitle">15 лет опыта в ремонте и обслуживании сельскохозяйственной техники. Качество, проверенное временем!</p>
@@ -812,7 +916,7 @@
     </section>
 
    <!-- About Section -->
-   <section id="about" class="parallax about-parallax">
+   <section id="about" class="parallax-section" style="background-image: url('images/bg3.jpg');">
     <div class="section-title">
         <h2>О нашей компании</h2>
         <div class="underline"></div>
@@ -853,7 +957,7 @@
 
 
     <!-- Products Section -->
-    <section id="products">
+    <section id="products" class="parallax-section" style="background-image: url('images/bg4.jpg');">
         <div class="section-title">
             <h2>Наша продукция</h2>
             <div class="underline"></div>
@@ -861,31 +965,38 @@
         
         <div class="features">
             <div class="feature-card product-card">
-                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Запчасти для двигателей" style="width:100%; height:200px; object-fit:cover;">
+                <img src="images/gid.jpg" alt="Запчасти для двигателей" style="width:100%; height:200px; object-fit:fill;">
                 <div style="padding:20px;">
-                    <h3>Запчасти для двигателей</h3>
-                    <p>Широкий ассортимент запчастей для двигателей сельскохозяйственной техники: поршни, кольца, вкладыши, клапаны и многое другое.</p>
-                </div>
+                    <h3>Гидравлические насосы</h3>
+                <p>Надежные насосы для эффективной работы гидросистем сельхозтехники</p>
+                    </div>
             </div>
             <div class="feature-card product-card">
-                <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Трансмиссионные узлы" style="width:100%; height:200px; object-fit:cover;">
+                <img src="images/podd.jpg" alt="Трансмиссионные узлы" style="width:100%; height:200px; object-fit:fill;">
                 <div style="padding:20px;">
-                    <h3>Трансмиссионные узлы</h3>
-                <p>Комплектующие для ремонта трансмиссий: шестерни, валы, подшипники, муфты и другие элементы.</p>
-                </div>
+                    <h3>Подшипники</h3>
+                <p>Качественные подшипники, обеспечивающие плавное вращение и долговечность механизмов</p></div>
             </div>
             <div class="feature-card product-card">
-                <img src="https://images.unsplash.com/photo-1592841200221-1907c5811a3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Сельхозтехника" style="width:100%; height:200px; object-fit:cover;">
+                <img src="images/top.jpg" alt="Сельхозтехника" style="width:100%; height:200px; object-fit:fill;">
                 <div style="padding:20px;">
-                    <h3>Сельхозтехника</h3>
-                    <p>Продажа новых и б/у тракторов, комбайнов, сеялок, культиваторов и другой сельскохозяйственной техники.</p>
-                </div>
+                    <h3>Топливные фильтры</h3>
+                    <p>Фильтры для чистой подачи топлива, предотвращающие износ двигателя.</p>
+                     </div>
+            </div>
+            <div class="feature-card product-card">
+                <img src="images/rad.jpg" alt="Сельхозтехника" style="width:100%; height:200px; object-fit:fill;">
+                <div style="padding:20px;">
+                    <h3>Радиаторы охлаждения</h3>
+                    <p>Эффективные радиаторы для поддержания оптимальной температуры двигателя.</p>
+                     </div>
+                    </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="agricultural-bg">
+    <section id="services" class="parallax-section" style="background-image: url('images/bg2.jpg');">
         <div class="section-title">
             <h2>Наши услуги</h2>
             <div class="underline"></div>
@@ -897,7 +1008,7 @@
                     <i class="fas fa-wrench"></i>
                 </div>
                 <h3>Ремонт техники</h3>
-                <p>Комплексный ремонт сельскохозяйственной техники любой сложности: тракторов, комбайнов, сеялок, культиваторов и др.</p>
+                <p>Комплексный ремонт сельскохозяйственной техники любой сложности: тракторов, комбайнов, сеялок и др.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
@@ -920,6 +1031,14 @@
                 <h3>Выездной ремонт</h3>
                 <p>Экстренный выезд наших специалистов для ремонта техники непосредственно в поле или на ферме.</p>
             </div>
+            <div style="display: flex; justify-content: center; margin-top: 0.5rem;">
+            <div class="custom-feature-card" style="max-width: 700px; width: 100%;">
+                <div class="custom-feature-header">Индивидуальные решения</div>
+                <p>Предлагаем комплексный подход и персонализированные услуги, адаптированные под ваши специфические задачи и требования.</p>
+                <div class="custom-feature-icon"><i class="fas fa-cogs"></i></div>
+            </div>
+        </div>
+           <!--
             <div class="feature-card">
                 <div class="feature-icon">
                     <i class="fas fa-battery-full"></i>
@@ -934,16 +1053,18 @@
                 <h3>Ремонт топливной системы</h3>
                 <p>Чистка и ремонт топливных насосов, форсунок, топливных баков и других элементов топливной системы.</p>
             </div>
+            -->
         </div>
     </section>
+    
 
     <!-- Reviews Section -->
-    <section id="reviews" class="reviews-section">
+    <section id="reviews" class="parallax-section" style="background-image: url(images/usl.jpg);">
         <div class="reviews-container">
             <div class="section-title">
                 <h2>Отзывы наших клиентов</h2>
                 <div class="underline"></div>
-                <p>Более 500 довольных клиентов по всему Ставропольскому краю</p>
+                <p><span style="font-size: 1.5rem;">Более 500 довольных клиентов по всему Ставропольскому краю</span></p>
             </div>
             
             <div class="review-stats">
@@ -986,7 +1107,7 @@
                     <p>Мы сотрудничаем с Агро-Мастер Ставрополье уже более 5 лет и всегда получаем качественный ремонт нашей техники. Их специалисты быстро и профессионально устраняют любые неисправности. Особенно хочу отметить выездной ремонт - когда сломался комбайн во время уборки, они приехали в течение 2 часов и оперативно все починили. Рекомендую всем сельхозпроизводителям!</p>
                 </div>
             </div>
-            
+            <!--
             <div class="review-card">
                 <div class="review-header">
                     <div class="review-avatar">
@@ -1030,13 +1151,15 @@
                     <p>Как крупное сельхозпредприятие, мы ценим в Агро-Мастер Ставрополье оперативность ремонта и наличие всех необходимых запчастей на складе. Это настоящие профессионалы своего дела! За последний год отремонтировали у них 8 тракторов и 3 комбайна - все работы выполнены в срок и с гарантией. Единственное пожелание - расширить складские площади, чтобы еще больше запчастей было в наличии.</p>
                 </div>
             </div>
+            -->
         </div>
     </section>
 
     <!-- Gallery Section -->
+     <!--
     <section id="gallery" class="gallery">
         <div class="section-title">
-            <h2>Наше производство</h2>
+            <h2>Галерея</h2>
             <div class="underline"></div>
         </div>
         <div class="gallery-grid">
@@ -1100,6 +1223,7 @@
         </div>
         
     </section>
+    -->
 
     <!-- Testimonials Section 
     <section id="testimonials" class="testimonials">
@@ -1168,7 +1292,7 @@
     </section> -->
 
     <!-- Contact Section -->
-    <section id="contact">
+    <section id="contact"   class="parallax-section" style="background-image: url('images/bg5.jpg');">
         <div class="section-title">
             <h2>Контакты</h2>
             <div class="underline"></div>
@@ -1179,7 +1303,7 @@
                     <i class="fas fa-map-marker-alt"></i>
                 </div>
                 <h3>Адрес</h3>
-                <p>Ставропольский край, г. Ставрополь, ул. Сельскохозяйственная, 123</p>
+                <p>Ставропольский край, г. Ставрополь, Промышленная 7-я, 3</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
@@ -1199,17 +1323,20 @@
             </div>
         </div>
         
-        <form style="max-width: 600px; margin: 30px auto;">
-            <div style="margin-bottom: 20px;">
-                <input type="text" placeholder="Ваше имя" style="width: 100%; padding: 12px 15px; border-radius: 5px; border: 1px solid #ddd; font-size: 1rem;">
-            </div>
-            <div style="margin-bottom: 20px;">
-                <input type="tel" placeholder="Ваш телефон" style="width: 100%; padding: 12px 15px; border-radius: 5px; border: 1px solid #ddd; font-size: 1rem;">
-            </div>
-            <div style="margin-bottom: 20px;">
-                <textarea placeholder="Ваше сообщение" rows="5" style="width: 100%; padding: 12px 15px; border-radius: 5px; border: 1px solid #ddd; font-size: 1rem;"></textarea>
-            </div>
-            <button type="submit" style="background-color: var(--primary); color: white; padding: 12px 30px; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Отправить сообщение</button>
+        <form style="max-width: 900px; margin: 30px auto; display: flex; gap: 2rem; flex-wrap: wrap;">
+        <!-- Левая часть с двумя полями -->
+        <div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 20px;">
+            <input type="text" placeholder="Ваше имя" style="width: 100%; padding: 12px 15px; border-radius: 5px; border: 1px solid #ddd; font-size: 1rem;">
+            <input type="tel" placeholder="Ваш телефон" style="width: 100%; padding: 12px 15px; border-radius: 5px; border: 1px solid #ddd; font-size: 1rem;">
+        </div>
+
+        <!-- Правая часть с textarea и кнопкой -->
+        <div style= "flex: 2 1 400px; display: flex; flex-direction: column; gap: 20px; text-align: center;">
+            <textarea placeholder="Ваше сообщение" rows="4" style="width: 100%; padding: 12px 15px; border-radius: 5px; border: 1px solid #ddd; font-size: 1rem;"></textarea>
+            <button type="submit" style="background-color: var(--primary); color: white; padding: 12px 30px; border: none; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; width: fit-content;">
+            Отправить сообщение
+            </button>
+        </div>
         </form>
     </section>
 
@@ -1234,7 +1361,7 @@
                     <li><a href="#products">Продукция</a></li>
                     <li><a href="#services">Услуги</a></li>
                     <li><a href="#reviews">Отзывы</a></li>
-                    <li><a href="#gallery">Галерея</a></li>
+                    <!--<li><a href="#gallery">Галерея</a></li>-->
                     <li><a href="#contact">Контакты</a></li>
                 </ul>
             </div>
@@ -1245,7 +1372,6 @@
                     <li><a href="#">Трансмиссионные узлы</a></li>
                     <li><a href="#">Электрооборудование</a></li>
                     <li><a href="#">Гидравлика</a></li>
-                    <li><a href="#">Сельхозтехника</a></li>
                 </ul>
             </div>
             <div class="footer-column">
@@ -1260,7 +1386,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2023 Агро-Мастер Ставрополье. Все права защищены.</p>
+            <p>&copy; 2025 Агро-Мастер Ставрополье. Все права защищены.</p>
         </div>
     </footer>
 
